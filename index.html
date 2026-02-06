@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <div class="sidebar">
+        <h2>Expense Tracker</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Add Transaction</li>
+            <li>Reports</li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <div class="header">
+            <h2>Dashboard</h2>
+
+            <div>
+                <button onclick="exportExcel()">Export Excel</button>
+                <button onclick="exportPDF()">Export PDF</button>
+                <button onclick="toggleTheme()" id="themeBtn">Dark Mode</button>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Income</h3>
+                <p id="income">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Expense</h3>
+                <p id="expense">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Balance</h3>
+                <p id="balance">0</p>
+            </div>
+        </div>
+
+        <div class="form">
+            <input type="text" id="desc" placeholder="Description">
+            <input type="number" id="amount" placeholder="Amount">
+
+            <select id="type">
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+
+            <select id="category">
+                <option>Food</option>
+                <option>Travel</option>
+                <option>Shopping</option>
+                <option>Salary</option>
+                <option>Other</option>
+            </select>
+
+            <input type="date" id="date">
+
+            <button onclick="addTransaction()">Add</button>
+        </div>
+
+        <select id="monthFilter" onchange="filterByMonth()">
+            <option value="all">All Months</option>
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+        </select>
+
+        <input type="text" id="search" placeholder="Search..." onkeyup="searchTransaction()">
+
+        <canvas id="expenseChart" width="400" height="200"></canvas>
+
+        <div class="card">
+            <h3>Category Wise Report</h3>
+            <ul id="categoryReport"></ul>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="table"></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
